@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-class Main extends javafx.application.Application {
+    class Main extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Model model = new Model();
