@@ -2,12 +2,13 @@ package com.example.stargame;
 
 public class Model {
 
-    public static int NUMBER_OF_LIGHTS = 12;
-    private boolean[] lights;
+    public static final int NUMBER_OF_LIGHTS = 12;
+    private final boolean[] lights = new boolean[NUMBER_OF_LIGHTS];
 
     public Model() {
-        lights = new boolean[NUMBER_OF_LIGHTS];
+        randomiseLights();
     }
+
 
     public void randomiseLights(){
         for(int i = 0; i < NUMBER_OF_LIGHTS; i++){
@@ -28,30 +29,14 @@ public class Model {
         boolean leftNeighbor = true;
         boolean rightNeighbor = true;
 
-        if (i == 0){ leftNeighbor = false; }
-        if  (i == 11){ rightNeighbor = false; }
+        if (i == 0) leftNeighbor = false;
+        if  (i == NUMBER_OF_LIGHTS-1) rightNeighbor = false;
 
-        if (leftNeighbor) {
-            if (lights[i-1]){
-                lights[i-1] = false;
-            } else {
-                lights[i-1] = true;
-            }
-        }
+        if (leftNeighbor) lights[i-1] = !lights[i - 1];
 
-        if (rightNeighbor) {
-            if (lights[i+1]){
-                lights[i+1] = false;
-            } else {
-                lights[i+1] = true;
-            }
-        }
+        if (rightNeighbor) lights[i+1] = !lights[i + 1];
 
-        if (lights[i]){
-            lights[i] = false;
-        } else {
-            lights[i] = true;
-        }
+        lights[i] = !lights[i];
     }
 
     public boolean allLightsAreOff() {
